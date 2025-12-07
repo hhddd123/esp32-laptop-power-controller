@@ -1,0 +1,15 @@
+[Unit]
+Description=ESP32 Laptop Power Control Command Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/esp32-power-control.env
+WorkingDirectory=/opt/esp32-power-control
+ExecStart=/usr/bin/python3 /opt/esp32-power-control/server.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
